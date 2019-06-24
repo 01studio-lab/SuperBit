@@ -1,4 +1,4 @@
-# superbit
+# SuperBit
 
 
 
