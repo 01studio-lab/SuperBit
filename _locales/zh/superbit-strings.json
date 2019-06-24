@@ -12,6 +12,6 @@
 	"Superbit.temperature|block": "BMP280温度",	
 	"Superbit.PowerOn|block": "开启BMP280传感器",
 	"Superbit.PowerOff|block": "关闭BMP280传感器",
-	"Superbit.Address|block": "设置BMP280地址 |%addr"
-	"Superbit.sensor|block": "超声波距离|%unit",
+	"Superbit.Address|block": "设置BMP280地址 |%addr",
+	"Superbit.sensor|block": "超声波距离|%unit"
 }
