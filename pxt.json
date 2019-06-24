@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*"
     },
-    "description": "Extension for 01Studio MicroBit(SuperBit)",
+    "description": "Extension for webee superbit",
     "files": [
         "main.blocks",
         "main.ts",
