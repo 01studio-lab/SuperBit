@@ -4,6 +4,7 @@
  */
 
 //% weight=100 color=#1E90FF icon="\uf13d"
+//% groups='["Sensor", "Motor", "Servo"]'
 namespace Superbit {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
@@ -205,7 +206,6 @@ namespace Superbit {
      * @param degree [0-180] degree of servo; eg: 0, 90, 180
     */
     //% blockId=robotbit_servo block="Servo|%index|degree %degree"
-    //% weight=100
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Servo(index: Servos, degree: number): void {
@@ -224,8 +224,6 @@ namespace Superbit {
      * @param degree [-45-225] degree of servo; eg: -45, 90, 225
     */
     //% blockId=robotbit_gservo block="Geek Servo|%index|degree %degree"
-    //% weight=99
-    //% blockGap=50
     //% degree.min=-45 degree.max=225
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function GeekServo(index: Servos, degree: number): void {
@@ -239,7 +237,6 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stepper_degree block="Stepper |%index|degree %degree"
-    //% weight=90
     export function StepperDegree(index: Steppers, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -251,7 +248,6 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stepper_dual block="Dual Stepper(Degree) |STEP_M1 %degree1| STEP_M2 %degree2"
-    //% weight=89
     export function StepperDual(degree1: number, degree2: number): void {
         if (!initialized) {
             initPCA9685()
@@ -334,25 +330,22 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stop block="Motor Stop|%index|"
-    //% weight=80
     export function MotorStop(index: Motors): void {
         MotorRun(index, 0);
     }
 
     //% blockId=superbit_stop_all block="Motor Stop All"
-    //% weight=79
-    //% blockGap=50
+    //% groups="Motor"
     export function MotorStopAll(): void {
         for (let ids = 1; ids <= 4; ids++) {
             stopMotor(ids);
         }
     }
 	
-	    /**
+     /**
      * get pressure
      */
     //% blockId="BMP280_GET_PRESSURE" block="BMP280 get pressure"
-    //% weight=80 blockGap=8
     export function pressure(): number {
         getBMP280();
         return Press;
@@ -362,7 +355,6 @@ namespace Superbit {
      * get temperature
      */
     //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 get temperature"
-    //% weight=80 blockGap=8
     export function temperature(): number {
         getBMP280();
         return Temp;
@@ -372,7 +364,6 @@ namespace Superbit {
      * power on
      */
     //% blockId="BMP280_POWER_ON" block="BMP280_Power On"
-    //% weight=61 blockGap=8
     export function PowerOn() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0x2F)
     }
@@ -381,7 +372,6 @@ namespace Superbit {
      * power off
      */
     //% blockId="BMP280_POWER_OFF" block="BMP280_Power Off"
-    //% weight=60 blockGap=8
     export function PowerOff() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0)
     }
@@ -390,13 +380,13 @@ namespace Superbit {
      * set I2C address
      */
     //% blockId="BMP280_SET_ADDRESS" block="set BMP280 address %addr"
-    //% weight=50 blockGap=8
+    //% groups="Sensor"
     export function Address(addr: BMP280_I2C_ADDRESS) {
         BMP280_I2C_ADDR = addr
     }
 	
     //% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
-    //% weight=91
+    //% groups="Sensor"
     export function sensor(unit: PingUnit, maxCmDistance = 500): number {
         // send pulse
         pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
@@ -420,8 +410,3 @@ namespace Superbit {
     let initialized = false
 
 }
-
-
-
-
-
