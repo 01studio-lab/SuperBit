@@ -273,7 +273,6 @@ namespace Superbit {
     }
 
     //% blockId=superbit_motor_run block="Motor|%index|speed %speed"
-    //% weight=85
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Motor"
@@ -309,7 +308,6 @@ namespace Superbit {
      * @param speed2 [-255-255] speed of motor; eg: 150, -150
     */
     //% blockId=superbit_motor_dual block="Motor|%motor1|speed %speed1|%motor2|speed %speed2"
-    //% weight=84
     //% speed1.min=-255 speed1.max=255
     //% speed2.min=-255 speed2.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -326,7 +324,6 @@ namespace Superbit {
      * @param delay seconde delay to stop; eg: 1
     */
     //% blockId=superbit_motor_rundelay block="Motor|%index|speed %speed|delay %delay|s"
-    //% weight=81
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Motor"
