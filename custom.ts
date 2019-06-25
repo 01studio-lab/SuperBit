@@ -209,6 +209,7 @@ namespace Superbit {
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Servo"
+	//% weight=97
     export function Servo(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -228,6 +229,7 @@ namespace Superbit {
     //% degree.min=-45 degree.max=225
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Servo"
+	//% weight=97
     export function GeekServo(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -240,6 +242,7 @@ namespace Superbit {
 
     //% blockId=superbit_stepper_degree block="Stepper |%index|degree %degree"
     //% groups="Motor"
+	//% weight=96
     export function StepperDegree(index: Steppers, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -252,6 +255,7 @@ namespace Superbit {
 
     //% blockId=superbit_stepper_dual block="Dual Stepper(Degree) |STEP_M1 %degree1| STEP_M2 %degree2"
     //% groups="Motor"
+	//% weight=96
     export function StepperDual(degree1: number, degree2: number): void {
         if (!initialized) {
             initPCA9685()
@@ -276,6 +280,7 @@ namespace Superbit {
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Motor"
+	//% weight=95
     export function MotorRun(index: Motors, speed: number): void {
         if (!initialized) {
             initPCA9685()
@@ -312,6 +317,7 @@ namespace Superbit {
     //% speed2.min=-255 speed2.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Motor"
+	//% weight=95
     export function MotorRunDual(motor1: Motors, speed1: number, motor2: Motors, speed2: number): void {
         MotorRun(motor1, speed1);
         MotorRun(motor2, speed2);
@@ -327,6 +333,7 @@ namespace Superbit {
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Motor"
+	//% weight=95
     export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
         MotorRun(index, speed);
         basic.pause(delay * 1000);
@@ -335,12 +342,14 @@ namespace Superbit {
 
     //% blockId=superbit_stop block="Motor Stop|%index|"
     //% groups="Motor"
+	//% weight=95
     export function MotorStop(index: Motors): void {
         MotorRun(index, 0);
     }
 
     //% blockId=superbit_stop_all block="Motor Stop All"
     //% groups="Motor"
+	//% weight=95
     export function MotorStopAll(): void {
         for (let ids = 1; ids <= 4; ids++) {
             stopMotor(ids);
@@ -352,6 +361,7 @@ namespace Superbit {
      */
     //% blockId="BMP280_GET_PRESSURE" block="BMP280 get pressure"
     //% groups="Sensor"
+	//% weight=99
     export function pressure(): number {
         getBMP280();
         return Press;
@@ -362,6 +372,7 @@ namespace Superbit {
      */
     //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 get temperature"
     //% groups="Sensor"
+	//% weight=99
     export function temperature(): number {
         getBMP280();
         return Temp;
@@ -372,6 +383,7 @@ namespace Superbit {
      */
     //% blockId="BMP280_POWER_ON" block="BMP280_Power On"
     //% groups="Sensor"
+	//% weight=99
     export function PowerOn() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0x2F)
     }
@@ -381,6 +393,7 @@ namespace Superbit {
      */
     //% blockId="BMP280_POWER_OFF" block="BMP280_Power Off"
     //% groups="Sensor"
+	//% weight=99
     export function PowerOff() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0)
     }
@@ -390,12 +403,14 @@ namespace Superbit {
      */
     //% blockId="BMP280_SET_ADDRESS" block="set BMP280 address %addr"
     //% groups="Sensor"
+	//% weight=99
     export function Address(addr: BMP280_I2C_ADDRESS) {
         BMP280_I2C_ADDR = addr
     }
 	
     //% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
     //% groups="Sensor"
+	//% weight=98
     export function sensor(unit: PingUnit, maxCmDistance = 500): number {
         // send pulse
         pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
