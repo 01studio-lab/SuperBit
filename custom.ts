@@ -1,10 +1,7 @@
-/* webee-superbit
+/* 01Studio-SuperBit
  * 使用此文件来定义自定义函数和图形块。
  * 想了解更详细的信息，请前往 https://makecode.microbit.org/blocks/custom
  */
-
-
-
 
 //% weight=100 color=#1E90FF icon="\uf13d"
 namespace Superbit {
@@ -61,31 +58,6 @@ namespace Superbit {
         ADDR_0x77 = 0x77
     }
 
-    //% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
-    //% weight=91
-    export function sensor(unit: PingUnit, maxCmDistance = 500): number {
-        // send pulse
-        pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
-        pins.digitalWritePin(DigitalPin.P8, 0);
-        control.waitMicros(2);
-        pins.digitalWritePin(DigitalPin.P8, 1);
-        control.waitMicros(10);
-        pins.digitalWritePin(DigitalPin.P8, 0);
-
-        // read pulse
-        let distance = Math.round(pins.pulseIn(DigitalPin.P12, PulseValue.High, maxCmDistance * 42));
-        console.log("Distance: " + Math.round(distance / 42) + "cm");
-
-        basic.pause(50)
-
-        switch (unit) {
-            case PingUnit.Centimeters: return Math.round(distance / 42);
-            default: return Math.round(distance);
-        }
-    }
-    let initialized = false
-
-
     let BMP280_I2C_ADDR = BMP280_I2C_ADDRESS.ADDR_0x76
 
     /**************************************Test BMP280*******************************/
@@ -136,55 +108,6 @@ namespace Superbit {
         var2 = (((_p >> 2)) * dig_P8) >> 13
         Press = _p + ((var1 + var2 + dig_P7) >> 4)
     }
-
-    /**
-     * get pressure
-     */
-    //% blockId="BMP280_GET_PRESSURE" block="BMP280 get pressure"
-    //% weight=80 blockGap=8
-    export function pressure(): number {
-        getBMP280();
-        return Press;
-    }
-
-    /**
-     * get temperature
-     */
-    //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 get temperature"
-    //% weight=80 blockGap=8
-    export function temperature(): number {
-        getBMP280();
-        return Temp;
-    }
-
-    /**
-     * power on
-     */
-    //% blockId="BMP280_POWER_ON" block="BMP280_Power On"
-    //% weight=61 blockGap=8
-    export function PowerOn() {
-        i2cwrite(BMP280_I2C_ADDR, 0xF4, 0x2F)
-    }
-
-    /**
-     * power off
-     */
-    //% blockId="BMP280_POWER_OFF" block="BMP280_Power Off"
-    //% weight=60 blockGap=8
-    export function PowerOff() {
-        i2cwrite(BMP280_I2C_ADDR, 0xF4, 0)
-    }
-
-
-    /**
-     * set I2C address
-     */
-    //% blockId="BMP280_SET_ADDRESS" block="set BMP280 address %addr"
-    //% weight=50 blockGap=8
-    export function Address(addr: BMP280_I2C_ADDRESS) {
-        BMP280_I2C_ADDR = addr
-    }
-
 
     function i2cwrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -349,7 +272,6 @@ namespace Superbit {
         MotorStopAll()
     }
 
-
     //% blockId=superbit_motor_run block="Motor|%index|speed %speed"
     //% weight=85
     //% speed.min=-255 speed.max=255
@@ -377,7 +299,6 @@ namespace Superbit {
             setPwm(pn, 0, -speed)
         }
     }
-
 
     /**
      * Execute two motors at the same time
@@ -412,8 +333,6 @@ namespace Superbit {
         MotorRun(index, 0);
     }
 
-
-
     //% blockId=superbit_stop block="Motor Stop|%index|"
     //% weight=80
     export function MotorStop(index: Motors): void {
@@ -428,7 +347,77 @@ namespace Superbit {
             stopMotor(ids);
         }
     }
+	
+	    /**
+     * get pressure
+     */
+    //% blockId="BMP280_GET_PRESSURE" block="BMP280 get pressure"
+    //% weight=80 blockGap=8
+    export function pressure(): number {
+        getBMP280();
+        return Press;
+    }
 
+    /**
+     * get temperature
+     */
+    //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 get temperature"
+    //% weight=80 blockGap=8
+    export function temperature(): number {
+        getBMP280();
+        return Temp;
+    }
+
+    /**
+     * power on
+     */
+    //% blockId="BMP280_POWER_ON" block="BMP280_Power On"
+    //% weight=61 blockGap=8
+    export function PowerOn() {
+        i2cwrite(BMP280_I2C_ADDR, 0xF4, 0x2F)
+    }
+
+    /**
+     * power off
+     */
+    //% blockId="BMP280_POWER_OFF" block="BMP280_Power Off"
+    //% weight=60 blockGap=8
+    export function PowerOff() {
+        i2cwrite(BMP280_I2C_ADDR, 0xF4, 0)
+    }
+
+    /**
+     * set I2C address
+     */
+    //% blockId="BMP280_SET_ADDRESS" block="set BMP280 address %addr"
+    //% weight=50 blockGap=8
+    export function Address(addr: BMP280_I2C_ADDRESS) {
+        BMP280_I2C_ADDR = addr
+    }
+	
+	//% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
+    //% weight=91
+    export function sensor(unit: PingUnit, maxCmDistance = 500): number {
+        // send pulse
+        pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
+        pins.digitalWritePin(DigitalPin.P8, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(DigitalPin.P8, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(DigitalPin.P8, 0);
+
+        // read pulse
+        let distance = Math.round(pins.pulseIn(DigitalPin.P12, PulseValue.High, maxCmDistance * 42));
+        console.log("Distance: " + Math.round(distance / 42) + "cm");
+
+        basic.pause(50)
+
+        switch (unit) {
+            case PingUnit.Centimeters: return Math.round(distance / 42);
+            default: return Math.round(distance);
+        }
+    }
+    let initialized = false
 
 }
 
