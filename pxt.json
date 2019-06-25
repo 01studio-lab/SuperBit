@@ -9,10 +9,10 @@
     "description": "Extension for 01Studio SuperBit",
     "files": [
         "main.blocks",
+        "custom.ts",
         "main.ts",
         "README.md",
-        "_locales/zh/superbit-strings.json",
-        "custom.ts"
+        "_locales/zh/superbit-strings.json"        
     ],
     "public": true
 }
