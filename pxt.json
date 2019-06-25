@@ -8,11 +8,10 @@
     },
     "description": "Extension for 01Studio SuperBit",
     "files": [
-        "main.blocks",
         "custom.ts",
-        "main.ts",
         "README.md",
         "_locales/zh/superbit-strings.json"        
     ],
-    "public": true
+    "public": true,
+    "icon": "https://github.com/01studio-lab/SuperBit/blob/master/icon.png"
 }
