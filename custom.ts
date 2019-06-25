@@ -395,7 +395,7 @@ namespace Superbit {
         BMP280_I2C_ADDR = addr
     }
 	
-	//% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
+    //% blockId=ultrasonic_sensor block="ultrasonic_sensor unit|%unit"
     //% weight=91
     export function sensor(unit: PingUnit, maxCmDistance = 500): number {
         // send pulse
