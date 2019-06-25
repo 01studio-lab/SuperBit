@@ -4,7 +4,7 @@
  */
 
 //% weight=100 color=#1E90FF icon="\uf13d"
-//% groups=["Sensor", "Motor", "Servo"]
+//% groups="['Sensor', 'Motor', 'Servo']"
 namespace Superbit {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
