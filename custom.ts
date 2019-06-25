@@ -4,7 +4,7 @@
  */
 
 //% weight=100 color=#1E90FF icon="\uf13d"
-//% groups='["Sensor", "Motor", "Servo"]'
+//% groups=["Sensor", "Motor", "Servo"]
 namespace Superbit {
     const PCA9685_ADDRESS = 0x40
     const MODE1 = 0x00
@@ -208,6 +208,7 @@ namespace Superbit {
     //% blockId=robotbit_servo block="Servo|%index|degree %degree"
     //% degree.min=0 degree.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% groups="Servo"
     export function Servo(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -226,6 +227,7 @@ namespace Superbit {
     //% blockId=robotbit_gservo block="Geek Servo|%index|degree %degree"
     //% degree.min=-45 degree.max=225
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% groups="Servo"
     export function GeekServo(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -237,6 +239,7 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stepper_degree block="Stepper |%index|degree %degree"
+    //% groups="Motor"
     export function StepperDegree(index: Steppers, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -248,6 +251,7 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stepper_dual block="Dual Stepper(Degree) |STEP_M1 %degree1| STEP_M2 %degree2"
+    //% groups="Motor"
     export function StepperDual(degree1: number, degree2: number): void {
         if (!initialized) {
             initPCA9685()
@@ -272,6 +276,7 @@ namespace Superbit {
     //% weight=85
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% groups="Motor"
     export function MotorRun(index: Motors, speed: number): void {
         if (!initialized) {
             initPCA9685()
@@ -308,6 +313,7 @@ namespace Superbit {
     //% speed1.min=-255 speed1.max=255
     //% speed2.min=-255 speed2.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% groups="Motor"
     export function MotorRunDual(motor1: Motors, speed1: number, motor2: Motors, speed2: number): void {
         MotorRun(motor1, speed1);
         MotorRun(motor2, speed2);
@@ -323,6 +329,7 @@ namespace Superbit {
     //% weight=81
     //% speed.min=-255 speed.max=255
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    //% groups="Motor"
     export function MotorRunDelay(index: Motors, speed: number, delay: number): void {
         MotorRun(index, speed);
         basic.pause(delay * 1000);
@@ -330,6 +337,7 @@ namespace Superbit {
     }
 
     //% blockId=superbit_stop block="Motor Stop|%index|"
+    //% groups="Motor"
     export function MotorStop(index: Motors): void {
         MotorRun(index, 0);
     }
@@ -346,6 +354,7 @@ namespace Superbit {
      * get pressure
      */
     //% blockId="BMP280_GET_PRESSURE" block="BMP280 get pressure"
+    //% groups="Sensor"
     export function pressure(): number {
         getBMP280();
         return Press;
@@ -355,6 +364,7 @@ namespace Superbit {
      * get temperature
      */
     //% blockId="BMP280_GET_TEMPERATURE" block="BMP280 get temperature"
+    //% groups="Sensor"
     export function temperature(): number {
         getBMP280();
         return Temp;
@@ -364,6 +374,7 @@ namespace Superbit {
      * power on
      */
     //% blockId="BMP280_POWER_ON" block="BMP280_Power On"
+    //% groups="Sensor"
     export function PowerOn() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0x2F)
     }
@@ -372,6 +383,7 @@ namespace Superbit {
      * power off
      */
     //% blockId="BMP280_POWER_OFF" block="BMP280_Power Off"
+    //% groups="Sensor"
     export function PowerOff() {
         i2cwrite(BMP280_I2C_ADDR, 0xF4, 0)
     }
