@@ -3,7 +3,7 @@
  * 想了解更详细的信息，请前往 https://makecode.microbit.org/blocks/custom
  */
 
-//% weight=100 color=#1E90FF icon="\uf13d"
+//% weight=10 color=#1E90FF icon="\uf13d"
 //% groups="['Sensor', 'Motor', 'Servo']"
 namespace Superbit {
     const PCA9685_ADDRESS = 0x40
