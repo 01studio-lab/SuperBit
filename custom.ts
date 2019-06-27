@@ -224,12 +224,12 @@ namespace SuperBit {
      * Geek Servo
      * @param index Servo Channel; eg: S1
      * @param degree [-45-225] degree of servo; eg: -45, 90, 225
-    */
+
     //% blockId=robotbit_gservo block="Geek Servo|%index|degree %degree"
     //% degree.min=-45 degree.max=225
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% groups="Servo"
-	//% weight=97
+    //% weight=97
     export function GeekServo(index: Servos, degree: number): void {
         if (!initialized) {
             initPCA9685()
@@ -239,6 +239,7 @@ namespace SuperBit {
         let value = v_us * 4096 / 20000
         setPwm(index + 7, 0, value)
     }
+     */
 
     //% blockId=superbit_stepper_degree block="Stepper |%index|degree %degree"
     //% groups="Motor"
